@@ -11,8 +11,10 @@ namespace WebFEAutomation.demoblaze.Pages
         private static readonly string ID_NEXT_PRODUCT_BUTTON = "next2";
         private static readonly string XPATH_LAPTOPS_MENU = "//a[contains(text(), 'Laptops')]";
 
-        // This is a hack. I can't find a good way to ensure the laptops are loaded
+        // This is a hack. I can't find a good way to ensure these menus are loaded
         private static readonly string XPATH_LAPTOPS_LOAD_CONDITION = "//p[contains(text(), 'Intel')]";
+        private static readonly string XPATH_PHONES_LOAD_CONDITION = "//p[contains(text(), 'Samsung')]";
+        private static readonly string XPATH_MONITORS_LOAD_CONDITION = "//p[contains(text(), 'LED')]";
 
         public HomePage(IWebDriver driver, WebDriverWait wait) : base(driver, wait) { }
 
@@ -29,6 +31,23 @@ namespace WebFEAutomation.demoblaze.Pages
             product.Load();
             return product;
         }
+
+        public ProductPage SearchMonitor(string model) {
+            ShowMonitors();
+            SearchThroughAllResultsUntilProductFound(model);
+            ProductPage product = new ProductPage(driver, wait, model);
+            product.Load();
+            return product;
+        }
+
+        public ProductPage SearchPhone(string model) {
+            ShowPhones();
+            SearchThroughAllResultsUntilProductFound(model);
+            ProductPage product = new ProductPage(driver, wait, model);
+            product.Load();
+            return product;
+        }
+
         private void SearchThroughAllResultsUntilProductFound(string model) {
             TestContext.Out.WriteLine("Browser is searching for '{0}'...", model);
 
@@ -48,6 +67,20 @@ namespace WebFEAutomation.demoblaze.Pages
             wait.Until(driver => driver.FindElement(By.XPath(XPATH_LAPTOPS_LOAD_CONDITION)));
 
             TestContext.Out.WriteLine("Laptop section has been selected");
+        }
+
+        private void ShowMonitors() {
+            wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(XPATH_LAPTOPS_MENU))).Click();
+            wait.Until(driver => driver.FindElement(By.XPath(XPATH_MONITORS_LOAD_CONDITION)));
+
+            TestContext.Out.WriteLine("Monitor section has been selected");
+        }
+
+        private void ShowPhones() {
+            wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(XPATH_LAPTOPS_MENU))).Click();
+            wait.Until(driver => driver.FindElement(By.XPath(XPATH_PHONES_LOAD_CONDITION)));
+
+            TestContext.Out.WriteLine("Phone section has been selected");
         }
     }
 }
