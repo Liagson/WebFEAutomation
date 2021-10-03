@@ -1,5 +1,5 @@
 # WebFEAutomation
-Test for Exercise 2. Implemented with C# in .Net Core 3.1 using NUnit as a test framework and SpecFlow for the gherkins logic.
+Test for Exercise 2. Implemented with C# in .Net Core 3.1 using NUnit as a test framework, Selenium for the browser interaction and SpecFlow for the gherkins logic.
 
 ## Execution instructions
 
