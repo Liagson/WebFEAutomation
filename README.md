@@ -3,7 +3,7 @@ Test for Exercise 2
 
 ## Execution instructions
 
-Purchase flow is defined in the `DemoBlazePurchase.feature` gherkin file and implemented in `DemoBlazePurchaseSteps.cs` . Visual Studio's test explore should detect it as a test to be executed. NUnit's logs will register each step or issue found.
+Purchase flow is defined in the `DemoBlazePurchase.feature` gherkin file and implemented in `DemoBlazePurchaseSteps.cs` . Visual Studio's test explorer should detect it as a test to be executed. NUnit's logs will register each step or issue found.
 
 ## Short description
 
